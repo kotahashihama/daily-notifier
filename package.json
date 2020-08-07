@@ -10,6 +10,7 @@
     "fs": "0.0.1-security",
     "mdns": "^2.5.1",
     "node-cron": "^2.0.3",
+    "request": "^2.88.2",
     "voicetext": "0.0.7"
   },
   "devDependencies": {},

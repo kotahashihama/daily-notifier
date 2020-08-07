@@ -1,6 +1,10 @@
 require('dotenv').config()
 
-const GoogleNest = require('./class/GoogleNest')
-const googleNest = new GoogleNest(process.env.GOOGLE_NEST_IP)
+const cron = require('node-cron')
+const WeatherChecker = require('./class/WeatherChecker')
 
-googleNest.say('こんにちは')
+cron.schedule('00 00,10,20,30,40,50 08-22 * * *', () => {
+  const weatherChecker = new WeatherChecker()
+
+  weatherChecker.check()
+})
