@@ -6,7 +6,12 @@ const VoiceText = require('voicetext')
 module.exports = class VoiceTextWriter {
   convertToVoice(text) {
     const voice = new VoiceText(process.env.VOICETEXT_API_KEY)
-    const OUT_PATH = './.temp/voice_text.wav'
+    const dirPath = './.temp/'
+    const fileName = 'voice_text.wav'
+
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath);
+    }
 
     return new Promise((resolve, reject) => {
       voice
@@ -19,7 +24,7 @@ module.exports = class VoiceTextWriter {
             console.err(err)
             reject()
           } else {
-            fs.writeFileSync(OUT_PATH, buffer, 'binary')
+            fs.writeFileSync(dirPath + fileName, buffer, 'binary')
             resolve()
           }
         })
